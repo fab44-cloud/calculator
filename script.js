@@ -1,23 +1,39 @@
+let num1;
+let num2;
+let operator;
+
 function add(a,b) {
     return a + b;
 }
-
-// add(4,6);
 
 function subtract(a,b) {
     return a - b;
 }
 
-// subtract(10,4);
-
 function multiply(a,b) {
     return a * b;
 }
 
-// multiply(4,4);
-
 function divide(a,b) {
+    if (b === 0) {
+        return "Cannot divide by zero";
+    }
     return a / b;
 }
 
-// divide(10, 5);
+function operate(operator, num1, num2) {
+    switch (operator) {
+        case "+":
+            return add(num1, num2);
+        case "-":
+            return subtract(num1, num2);
+        case "*":
+            return multiply(num1, num2);
+        case "/":
+            return divide(num1, num2);
+        default:
+            return "Invalid operator";
+    }
+}
+
+operate("+", 2, 3)
