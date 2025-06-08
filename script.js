@@ -22,8 +22,13 @@ function divide(a,b) {
 }
 
 function operate(operator, num1, num2) {
+    // The switch expression is evaluated once.
+    // The value of the expression is compared with the values of each case.
+    // If there is a match, the associated code block is executed
+    // If there is no match, the default code block is executed
     switch (operator) {
         case "+":
+            // Code to execute if operator === "+"
             return add(num1, num2);
         case "-":
             return subtract(num1, num2);
@@ -36,4 +41,4 @@ function operate(operator, num1, num2) {
     }
 }
 
-operate("+", 2, 3)
+// operate("+", 2, 3)
