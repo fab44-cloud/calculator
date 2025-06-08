@@ -1,8 +1,25 @@
 body {
+    box-sizing: border-box;
     padding: 0px;
     margin: 0px;
 }
 
 .container {
+    display: flex;
+    justify-content: center;
     border: 1px solid orangered;
+}
+
+.calculator-container {
+    border: 1px solid burlywood;
+}
+
+.display {
+    border: 1px solid salmon;
+    height: 60px;
+    padding: 10px;
+}
+
+.first-row {
+    gap: 8px;
 }
