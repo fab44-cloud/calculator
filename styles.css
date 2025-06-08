@@ -11,15 +11,17 @@ body {
 }
 
 .calculator-container {
-    border: 1px solid burlywood;
+    border: 1px solid green;
+    padding: 32px 16px;
 }
 
 .display {
-    border: 1px solid salmon;
+    border: 1px solid slateblue;
     height: 60px;
     padding: 10px;
+    background-color: beige;
 }
 
 .first-row {
-    gap: 8px;
+    display: flex;
 }
