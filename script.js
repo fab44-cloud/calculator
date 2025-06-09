@@ -1,5 +1,5 @@
-let num1;
-let num2;
+let firstOperand;
+let secondOperand;
 let operator;
 
 function add(a,b) {
@@ -46,7 +46,7 @@ function operate(operator, num1, num2) {
 function displayDigit() {
     const display = document.querySelector(".display");
     // console.log(display);
-    const buttons = document.querySelectorAll("button");
+    const buttons = document.querySelectorAll(".numeric-keys");
     
     // Use .forEach method to iterate over each button.
     buttons.forEach((button) => {
@@ -54,7 +54,8 @@ function displayDigit() {
         
         // For each one we add a click event listener.
         button.addEventListener("click", () => {
-            const buttonNumber = button.dataset.number;
+            // Returns text of each button
+            const buttonNumber = button.textContent;
             display.textContent += buttonNumber;
             console.log(display);
         });
