@@ -11,8 +11,13 @@ body {
 }
 
 .calculator-container {
+    border-radius: 1%;
     border: 1px solid green;
     padding: 32px 16px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .display {
