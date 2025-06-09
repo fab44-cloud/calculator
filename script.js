@@ -24,8 +24,8 @@ function divide(a,b) {
 function operate(operator, num1, num2) {
     // The switch expression is evaluated once.
     // The value of the expression is compared with the values of each case.
-    // If there is a match, the associated code block is executed
-    // If there is no match, the default code block is executed
+    // If there is a match, the associated code block is executed.
+    // If there is no match, the default code block is executed.
     switch (operator) {
         case "+":
             // Code to execute if operator === "+"
@@ -42,3 +42,23 @@ function operate(operator, num1, num2) {
 }
 
 // operate("+", 2, 3)
+
+function displayDigit() {
+    const display = document.querySelector(".display");
+    // console.log(display);
+    const buttons = document.querySelectorAll("button");
+    
+    // Use .forEach method to iterate over each button.
+    buttons.forEach((button) => {
+        console.log(button);
+        
+        // For each one we add a click event listener.
+        button.addEventListener("click", () => {
+            const buttonNumber = button.dataset.number;
+            display.textContent += buttonNumber;
+            console.log(display);
+        });
+    });
+}
+
+displayDigit();
