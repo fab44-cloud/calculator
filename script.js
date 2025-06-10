@@ -2,6 +2,7 @@ let firstOperand = "";
 let secondOperand = "";
 let operator = "";
 
+
 function add(a,b) {
     return a + b;
 }
@@ -16,7 +17,7 @@ function multiply(a,b) {
 
 function divide(a,b) {
     if (b === 0) {
-        return "Google is your friend at this moment.";
+        return "a/b = c means a = b*c. If b is zero, then a is also zero.";
     }
     return a / b;
 }
@@ -43,21 +44,51 @@ function operate(operator, firstOperand, secondOperand) {
 
 // operate("+", 2, 3)
 
-function displayDigit() {
+function updateDisplay(value) {
     const display = document.querySelector(".display");
+    display.textContent = value;
+    console.log(value);
+}
+
+function displayOperator() {
+    // Event listener for operator buttons
+    const operatorButtons = document.querySelectorAll(".operator-keys")
+    console.log(operatorButtons);
+    operatorButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            // Store the operator
+            operator += button.textContent;
+            // Display the operator
+            updateDisplay(operator);
+        });
+    });  
+}
+
+displayOperator();
+
+function displayDigit() {
     const buttons = document.querySelectorAll(".numeric-keys");
     
     // Use .forEach method to iterate over each button.
     buttons.forEach((button) => {
         // console.log(button);
         
-        // For each one we add a click event listener.
+        // For each button we add a click event listener.
         button.addEventListener("click", () => {
             // Retrieves text of each button
-            // const buttonNumber = button.textContent;
-            // display.textContent += buttonNumber;
-            firstOperand += display.textContent;
-            console.log(firstOperand);
+            if (operator === "") {
+                firstOperand += button.textContent;
+                updateDisplay(firstOperand);
+                console.log(firstOperand);  
+            } else {
+                secondOperand += button.textContent;
+                updateDisplay(secondOperand);
+                console.log(secondOperand);
+                solution = operate(operator, firstOperand, secondOperand);
+                console.log(typeof(operator));
+                console.log(typeof(firstOperand));
+                console.log(solution);
+            }
         });
     });
 }
