@@ -1,6 +1,6 @@
-let firstOperand;
-let secondOperand;
-let operator;
+let firstOperand = "";
+let secondOperand = "";
+let operator = "";
 
 function add(a,b) {
     return a + b;
@@ -16,12 +16,12 @@ function multiply(a,b) {
 
 function divide(a,b) {
     if (b === 0) {
-        return "Cannot divide by zero";
+        return "Google is your friend at this moment.";
     }
     return a / b;
 }
 
-function operate(operator, num1, num2) {
+function operate(operator, firstOperand, secondOperand) {
     // The switch expression is evaluated once.
     // The value of the expression is compared with the values of each case.
     // If there is a match, the associated code block is executed.
@@ -29,13 +29,13 @@ function operate(operator, num1, num2) {
     switch (operator) {
         case "+":
             // Code to execute if operator === "+"
-            return add(num1, num2);
+            return add(firstOperand, secondOperand);
         case "-":
-            return subtract(num1, num2);
+            return subtract(firstOperand, secondOperand);
         case "*":
-            return multiply(num1, num2);
+            return multiply(firstOperand, secondOperand);
         case "/":
-            return divide(num1, num2);
+            return divide(firstOperand, secondOperand);
         default:
             return "Invalid operator";
     }
@@ -45,19 +45,19 @@ function operate(operator, num1, num2) {
 
 function displayDigit() {
     const display = document.querySelector(".display");
-    // console.log(display);
     const buttons = document.querySelectorAll(".numeric-keys");
     
     // Use .forEach method to iterate over each button.
     buttons.forEach((button) => {
-        console.log(button);
+        // console.log(button);
         
         // For each one we add a click event listener.
         button.addEventListener("click", () => {
-            // Returns text of each button
-            const buttonNumber = button.textContent;
-            display.textContent += buttonNumber;
-            console.log(display);
+            // Retrieves text of each button
+            // const buttonNumber = button.textContent;
+            // display.textContent += buttonNumber;
+            firstOperand += display.textContent;
+            console.log(firstOperand);
         });
     });
 }
