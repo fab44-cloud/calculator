@@ -65,12 +65,21 @@ function displayOperator() {
 }
 
 displayOperator();
+// Define the equalsButton
+const equalsButton = document.querySelector(".equals-button");
+// Event listener for equals button
+equalsButton.addEventListener("click", () => {
+    solution = operate(operator, firstOperand, secondOperand);
+    console.log(typeof(operator));
+    console.log(typeof(firstOperand));
+    console.log(solution);
+})
 
-function displayDigit() {
-    const buttons = document.querySelectorAll(".numeric-keys");
+function displayNumber() {
+    const numberButtons = document.querySelectorAll(".numeric-keys");
     
     // Use .forEach method to iterate over each button.
-    buttons.forEach((button) => {
+    numberButtons.forEach((button) => {
         // console.log(button);
         
         // For each button we add a click event listener.
@@ -84,13 +93,9 @@ function displayDigit() {
                 secondOperand += button.textContent;
                 updateDisplay(secondOperand);
                 console.log(secondOperand);
-                solution = operate(operator, firstOperand, secondOperand);
-                console.log(typeof(operator));
-                console.log(typeof(firstOperand));
-                console.log(solution);
             }
         });
     });
 }
 
-displayDigit();
+displayNumber();
