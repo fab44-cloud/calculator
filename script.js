@@ -1,6 +1,6 @@
+let operator = "";
 let firstOperand = "";
 let secondOperand = "";
-let operator = "";
 
 
 function add(a,b) {
@@ -65,11 +65,18 @@ function displayOperator() {
 }
 
 displayOperator();
+
 // Define the equalsButton
 const equalsButton = document.querySelector(".equals-button");
 // Event listener for equals button
 equalsButton.addEventListener("click", () => {
     solution = operate(operator, firstOperand, secondOperand);
+    updateDisplay(solution);
+    // Reset the calculator for the next calculation
+    operator = "";
+    firstOperand = "";
+    secondOperand = "";
+    console.log(operator);
     console.log(typeof(operator));
     console.log(typeof(firstOperand));
     console.log(solution);
