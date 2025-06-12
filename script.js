@@ -1,6 +1,6 @@
-let operator = "";
-let firstOperand = "";
-let secondOperand = "";
+const operator = "";
+const firstOperand = "";
+const secondOperand = "";
 
 
 function add(a,b) {
@@ -70,15 +70,20 @@ displayOperator();
 const equalsButton = document.querySelector(".equals-button");
 // Event listener for equals button
 equalsButton.addEventListener("click", () => {
-    solution = operate(operator, firstOperand, secondOperand);
+    // Convert operands to numbers
+    const num1 = parseFloat(firstOperand);
+    const num2 = parseFloat(secondOperand);
+    // Perform the calculation and save it to a variable
+    const solution = operate(operator, num1, num2);
     updateDisplay(solution);
     // Reset the calculator for the next calculation
     operator = "";
-    firstOperand = "";
+    firstOperand = solution;
     secondOperand = "";
+
     console.log(operator);
     console.log(typeof(operator));
-    console.log(typeof(firstOperand));
+    console.log(typeof(num1));
     console.log(solution);
 })
 
