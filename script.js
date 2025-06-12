@@ -1,6 +1,6 @@
-const operator = "";
-const firstOperand = "";
-const secondOperand = "";
+let operator = "";
+let firstOperand = "";
+let secondOperand = "";
 
 
 function add(a,b) {
@@ -87,7 +87,18 @@ equalsButton.addEventListener("click", () => {
     console.log(solution);
 })
 
-function displayNumber() {
+// Define the clear button
+const clearButton = document.querySelector(".clear-key")
+
+// Event listener for clear button
+clearButton.addEventListener("click", () => {
+    operator = "";
+    firstOperand = "";
+    secondOperand = "";
+    updateDisplay("");
+})
+
+function displayOperands() {
     const numberButtons = document.querySelectorAll(".numeric-keys");
     
     // Use .forEach method to iterate over each button.
@@ -110,4 +121,4 @@ function displayNumber() {
     });
 }
 
-displayNumber();
+displayOperands();
