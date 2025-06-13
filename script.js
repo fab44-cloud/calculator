@@ -46,7 +46,10 @@ function operate(operator, firstOperand, secondOperand) {
 
 function updateDisplay(value) {
     const display = document.querySelector(".display");
-    display.textContent = value;
+    if (value.length < 13) {
+        console.log(value.length);
+        display.textContent = value;  
+    }
 }
 
 function displayOperator() {
@@ -70,20 +73,23 @@ const equalsButton = document.querySelector(".equals-button");
 
 // Event listener for equals button
 equalsButton.addEventListener("click", () => {
-    // if (operator === "" || firstOperand === "" || secondOperand === "") {
+    if (operator === "" || firstOperand === "" || secondOperand === "") {
 
-    // } else {
+    } else {
         // Convert operands to numbers
         const num1 = parseFloat(firstOperand);
         const num2 = parseFloat(secondOperand);
         // Perform the calculation and save it to a variable
         const solution = operate(operator, num1, num2);
-        updateDisplay(solution);
+        // Convert solution to a string to be able to get the length
+        let solutionString = solution.toString();
+        console.log(solutionString);
+        updateDisplay(solutionString);
         // Reset the calculator for the next calculation
         operator = "";
         firstOperand = solution;
         secondOperand = "";
-    // }
+    }
 })
 
 
@@ -116,7 +122,8 @@ function displayOperands() {
             if (operator === "") {
                 firstOperand += button.textContent;
                 updateDisplay(firstOperand);
-                console.log(firstOperand);  
+                console.log(firstOperand);
+                console.log(typeof(firstOperand));
             } else {
                 secondOperand += button.textContent;
                 updateDisplay(secondOperand);
