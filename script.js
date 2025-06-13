@@ -47,7 +47,6 @@ function operate(operator, firstOperand, secondOperand) {
 function updateDisplay(value) {
     const display = document.querySelector(".display");
     display.textContent = value;
-    console.log(value);
 }
 
 function displayOperator() {
@@ -68,35 +67,41 @@ displayOperator();
 
 // Define the equalsButton
 const equalsButton = document.querySelector(".equals-button");
+
 // Event listener for equals button
 equalsButton.addEventListener("click", () => {
-    // Convert operands to numbers
-    const num1 = parseFloat(firstOperand);
-    const num2 = parseFloat(secondOperand);
-    // Perform the calculation and save it to a variable
-    const solution = operate(operator, num1, num2);
-    updateDisplay(solution);
-    // Reset the calculator for the next calculation
-    operator = "";
-    firstOperand = solution;
-    secondOperand = "";
+    // if (operator === "" || firstOperand === "" || secondOperand === "") {
 
-    console.log(operator);
-    console.log(typeof(operator));
-    console.log(typeof(num1));
-    console.log(solution);
+    // } else {
+        // Convert operands to numbers
+        const num1 = parseFloat(firstOperand);
+        const num2 = parseFloat(secondOperand);
+        // Perform the calculation and save it to a variable
+        const solution = operate(operator, num1, num2);
+        updateDisplay(solution);
+        // Reset the calculator for the next calculation
+        operator = "";
+        firstOperand = solution;
+        secondOperand = "";
+    // }
 })
 
-// Define the clear button
-const clearButton = document.querySelector(".clear-key")
 
-// Event listener for clear button
-clearButton.addEventListener("click", () => {
-    operator = "";
-    firstOperand = "";
-    secondOperand = "";
-    updateDisplay("");
-})
+function clearDisplay() {
+    // Define the clear button
+    const clearButton = document.querySelector(".clear-key")
+
+    // Event listener for clear button
+    clearButton.addEventListener("click", () => {
+        operator = "";
+        firstOperand = "";
+        secondOperand = "";
+        updateDisplay("");
+    })   
+}
+
+clearDisplay();
+
 
 function displayOperands() {
     const numberButtons = document.querySelectorAll(".numeric-keys");
