@@ -6,7 +6,9 @@ body {
 
 .container {
     display: flex;
+    flex: 1;
     justify-content: center;
+    align-items: center;
     border: 1px solid orangered;
 }
 
@@ -18,15 +20,42 @@ body {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    background-color: rgb(98, 98, 179);
 }
 
 .display {
     border: 1px solid slateblue;
     height: 60px;
     padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
     background-color: beige;
 }
 
 .first-row {
+    margin-bottom: 8px;
     display: flex;
+    justify-content: space-between;
+}
+
+.other-rows {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    width: 64px;
+    height: 64px;
+    color: white;
+    background-color: rgb(55, 156, 156);
+    font-weight: 1000;
+    font-size: 24px;
+    border-radius: 50%;
+}
+
+h1 {
+    padding: 16px 16px;
+    background-color: blanchedalmond;
 }
