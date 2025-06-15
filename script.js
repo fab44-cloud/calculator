@@ -54,7 +54,7 @@ function updateDisplay(value) {
 function displayOperator() {
     // Event listener for operator buttons
     const operatorButtons = document.querySelectorAll(".operator-keys")
-    console.log(operatorButtons);
+    // console.log(operatorButtons);
     operatorButtons.forEach(button => {
         button.addEventListener("click", () => {
             // Store the operator
@@ -71,31 +71,32 @@ displayOperator();
 const equalsButton = document.querySelector(".equals-button");
 
 // Event listener for equals button
-equalsButton.addEventListener("click", () => {
+equalsButton.addEventListener("click", () => {        
+    // Convert operands to numbers
+    const num1 = parseFloat(firstOperand);
+    const num2 = parseFloat(secondOperand);
+    const display = document.querySelector(".display");
+    // Perform the calculation and save it to a variable
+    let solution = operate(operator, num1, num2);
+    
     if (operator === "" || firstOperand === "" || secondOperand === "") {
-
+        return;
+    } else if (num2 === 0) {
+        updateDisplay(solution);
+        operator = "";
+        firstOperand = "";
+        secondOperand = "";
     } else {
-        // Convert operands to numbers
-        const num1 = parseFloat(firstOperand);
-        const num2 = parseFloat(secondOperand);
-        // Perform the calculation and save it to a variable
-        let solution = operate(operator, num1, num2);
         console.log(solution)
         if (solution !== Math.floor(solution)) {
-            console.log(solution);
+            // Round the solution to four decimal places
             solution = solution.toFixed(4);
-            updateDisplay(solution);
-            console.log(solution);   
+            updateDisplay(solution); 
         } else {
             solution = solution.toFixed(0);
-            console.log(solution);
             updateDisplay(solution);
         }
-        // Round the solution to four decimal places
-        
-        console.log(solution.length);
-        console.log(typeof(solution));
-        
+
         // Reset the calculator for the next calculation
         operator = "";
         firstOperand = solution;
@@ -139,6 +140,7 @@ function displayOperands() {
                 secondOperand += button.textContent;
                 updateDisplay(secondOperand);
                 console.log(secondOperand);
+                console.log(typeof(secondOperand));
             }
         });
     });
