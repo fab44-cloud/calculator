@@ -80,7 +80,11 @@ equalsButton.addEventListener("click", () => {
         const num1 = parseFloat(firstOperand);
         const num2 = parseFloat(secondOperand);
         // Perform the calculation and save it to a variable
-        const solution = operate(operator, num1, num2);
+        let solution = operate(operator, num1, num2);
+        // Set the solution to four decimal places
+        solution = solution.toFixed(4);
+        console.log(solution);
+        console.log(typeof(solution));
         // Convert solution to a string to be able to get the length
         let solutionString = solution.toString();
         console.log(solutionString);
