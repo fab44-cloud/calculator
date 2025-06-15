@@ -17,7 +17,7 @@ function multiply(a,b) {
 
 function divide(a,b) {
     if (b === 0) {
-        return "a/b = c means a = b*c. If b is zero, then a is also zero.";
+        return "Bad math";
     }
     return a / b;
 }
@@ -47,7 +47,6 @@ function operate(operator, firstOperand, secondOperand) {
 function updateDisplay(value) {
     const display = document.querySelector(".display");
     if (value.length < 13) {
-        console.log(value.length);
         display.textContent = value;  
     }
 }
@@ -81,14 +80,22 @@ equalsButton.addEventListener("click", () => {
         const num2 = parseFloat(secondOperand);
         // Perform the calculation and save it to a variable
         let solution = operate(operator, num1, num2);
-        // Set the solution to four decimal places
-        solution = solution.toFixed(4);
-        console.log(solution);
+        console.log(solution)
+        if (solution !== Math.floor(solution)) {
+            console.log(solution);
+            solution = solution.toFixed(4);
+            updateDisplay(solution);
+            console.log(solution);   
+        } else {
+            solution = solution.toFixed(0);
+            console.log(solution);
+            updateDisplay(solution);
+        }
+        // Round the solution to four decimal places
+        
+        console.log(solution.length);
         console.log(typeof(solution));
-        // Convert solution to a string to be able to get the length
-        let solutionString = solution.toString();
-        console.log(solutionString);
-        updateDisplay(solutionString);
+        
         // Reset the calculator for the next calculation
         operator = "";
         firstOperand = solution;
