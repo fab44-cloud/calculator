@@ -17,7 +17,7 @@ function multiply(a,b) {
 
 function divide(a,b) {
     if (b === 0) {
-        return "Bad math";
+        return "Undefined";
     }
     return a / b;
 }
@@ -51,16 +51,24 @@ function updateDisplay(value) {
     }
 }
 
+// Flag to track if an operator has been selected
+let operatorSelected = false;
+
 function displayOperator() {
     // Event listener for operator buttons
-    const operatorButtons = document.querySelectorAll(".operator-keys")
-    // console.log(operatorButtons);
+    const operatorButtons = document.querySelectorAll(".operator-keys");
     operatorButtons.forEach(button => {
         button.addEventListener("click", () => {
+            // Check if an operator has been selected
+            if (!operatorSelected) {
             // Store the operator
             operator += button.textContent;
             // Display the operator
             updateDisplay(operator);
+            // Set the flag to true
+            operatorSelected = true;
+            }
+
         });
     });  
 }
@@ -78,20 +86,24 @@ equalsButton.addEventListener("click", () => {
     const display = document.querySelector(".display");
     // Perform the calculation and save it to a variable
     let solution = operate(operator, num1, num2);
+    // Set the flag to false after the calculation has finished
+    operatorSelected = false;
     
     if (operator === "" || firstOperand === "" || secondOperand === "") {
         return;
     } else if (num2 === 0) {
         updateDisplay(solution);
-        operator = "";
-        firstOperand = "";
-        secondOperand = "";
     } else {
         console.log(solution)
+        console.log(typeof(solution))
         if (solution !== Math.floor(solution)) {
             // Round the solution to four decimal places
             solution = solution.toFixed(4);
-            updateDisplay(solution); 
+            updateDisplay(solution);
+
+            firstOperand = "";
+            secondOperand = "";
+            solution = "";
         } else {
             solution = solution.toFixed(0);
             updateDisplay(solution);
@@ -101,6 +113,7 @@ equalsButton.addEventListener("click", () => {
         operator = "";
         firstOperand = solution;
         secondOperand = "";
+        
     }
 })
 
