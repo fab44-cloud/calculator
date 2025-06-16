@@ -1,6 +1,8 @@
 let operator = "";
 let firstOperand = "";
 let secondOperand = "";
+let operatorSelected = false;
+let resultDisplayed = false;
 
 
 function add(a,b) {
@@ -50,9 +52,6 @@ function updateDisplay(value) {
         display.textContent = value;  
     }
 }
-
-// Flag to track if an operator has been selected
-let operatorSelected = false;
 
 function displayOperator() {
     // Event listener for operator buttons
@@ -112,7 +111,7 @@ equalsButton.addEventListener("click", () => {
         operator = "";
         firstOperand = solution;
         secondOperand = "";
-        
+        resultDisplayed = true;
     }
 })
 
@@ -142,13 +141,21 @@ function displayOperands() {
         
         // For each button we add a click event listener.
         button.addEventListener("click", () => {
-            // Retrieves text of each button
-            if (operator === "") {
+            if (resultDisplayed) {
+                // Clear the display and operands
+                firstOperand = "";
+                secondOperand = "";
+                updateDisplay("");
+
+                // Reset the flag
+                resultDisplayed = false;
+            }
+            if (!operatorSelected) {
                 firstOperand += button.textContent;
                 updateDisplay(firstOperand);
                 console.log(firstOperand);
                 console.log(typeof(firstOperand));
-            } else {
+            } else if (operatorSelected) {
                 secondOperand += button.textContent;
                 updateDisplay(secondOperand);
                 console.log(secondOperand);
