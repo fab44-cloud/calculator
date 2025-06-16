@@ -93,6 +93,9 @@ equalsButton.addEventListener("click", () => {
         return;
     } else if (num2 === 0) {
         updateDisplay(solution);
+        operator = "";
+        firstOperand = "";
+        secondOperand = "";
     } else {
         console.log(solution)
         console.log(typeof(solution))
@@ -100,10 +103,6 @@ equalsButton.addEventListener("click", () => {
             // Round the solution to four decimal places
             solution = solution.toFixed(4);
             updateDisplay(solution);
-
-            firstOperand = "";
-            secondOperand = "";
-            solution = "";
         } else {
             solution = solution.toFixed(0);
             updateDisplay(solution);
