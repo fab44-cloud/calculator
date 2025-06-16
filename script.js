@@ -80,9 +80,13 @@ const equalsButton = document.querySelector(".equals-button");
 // Event listener for equals button
 equalsButton.addEventListener("click", () => {        
     // Convert operands to numbers
+    console.log(firstOperand);
     const num1 = parseFloat(firstOperand);
     const num2 = parseFloat(secondOperand);
     const display = document.querySelector(".display");
+    console.log(num1);
+    console.log(operator);
+    console.log(num2);
     // Perform the calculation and save it to a variable
     let solution = operate(operator, num1, num2);
     // Set the flag to false after the calculation has finished
@@ -142,8 +146,7 @@ function displayOperands() {
         // For each button we add a click event listener.
         button.addEventListener("click", () => {
             if (resultDisplayed) {
-                // Clear the display and operands
-                firstOperand = "";
+                // Clear the display and secondOperand
                 secondOperand = "";
                 updateDisplay("");
 
