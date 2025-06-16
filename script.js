@@ -58,8 +58,9 @@ function displayOperator() {
     const operatorButtons = document.querySelectorAll(".operator-keys");
     operatorButtons.forEach(button => {
         button.addEventListener("click", () => {
-            // Check if an operator has been selected
-            if (!operatorSelected) {
+            if (firstOperand === "") {
+                return;
+            } else if (!operatorSelected) {
             // Store the operator
             operator += button.textContent;
             // Display the operator
