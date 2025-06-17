@@ -68,7 +68,6 @@ function displayOperator() {
             // Set the flag to true
             operatorSelected = true;
             }
-
         });
     });  
 }
@@ -84,10 +83,6 @@ equalsButton.addEventListener("click", () => {
     console.log(firstOperand);
     const num1 = parseFloat(firstOperand);
     const num2 = parseFloat(secondOperand);
-    const display = document.querySelector(".display");
-    console.log(num1);
-    console.log(operator);
-    console.log(num2);
     // Perform the calculation and save it to a variable
     let solution = operate(operator, num1, num2);
     // Set the flag to false after the calculation has finished
@@ -120,7 +115,6 @@ equalsButton.addEventListener("click", () => {
     }
 })
 
-
 function clearDisplay() {
     // Define the clear button
     const clearButton = document.querySelector(".clear-key")
@@ -136,6 +130,27 @@ function clearDisplay() {
 
 clearDisplay();
 
+// Define decimal button
+const decimalButton = document.querySelector(".decimal-key")
+
+// Event listener for decimal button
+decimalButton.addEventListener("click", () => {
+    const display = document.querySelector(".display");
+
+    // Check if the current display value already contains a decimal
+    if (display.textContent.includes('.')) {
+        return;
+    }
+
+    // Append decimal point to the current operand
+    if (!operatorSelected) {
+        firstOperand += "."
+        updateDisplay(firstOperand);
+    } else {
+        secondOperand += ".";
+        updateDisplay(secondOperand);
+    }
+})
 
 function displayOperands() {
     const numberButtons = document.querySelectorAll(".numeric-keys");
@@ -170,3 +185,5 @@ function displayOperands() {
 }
 
 displayOperands();
+
+
