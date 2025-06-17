@@ -1,3 +1,4 @@
+// Variables 
 let operator = "";
 let firstOperand = "";
 let secondOperand = "";
@@ -76,6 +77,7 @@ function displayOperator() {
 
 displayOperator();
 
+
 // Define the equalsButton
 const equalsButton = document.querySelector(".equals-button");
 
@@ -132,38 +134,60 @@ function clearDisplay() {
 
 clearDisplay();
 
-// // Define decimal button
-// const decimalButton = document.querySelector(".decimal-key")
 
-// // Event listener for decimal button
-// decimalButton.addEventListener("click", () => {
-//     const display = document.querySelector(".display");
+// Define backspace button
+const backspaceButton = document.querySelector(".backspace-button");
 
-//     // Check if the current display value already contains a decimal
-//     if (display.textContent.includes('.')) {
-//         return;
-//     }
+// Event listener for backspace button
+backspaceButton.addEventListener("click", () => {
+    const display = document.querySelector(".display");
+    let currentValue = display.textContent
 
-//     // Append decimal point to the current operand
-//     if (!operatorSelected) {
-//         firstOperand += "."
-//         updateDisplay(firstOperand);
-//     } else {
-//         secondOperand += ".";
-//         updateDisplay(secondOperand);
-//     }
-// })
+    if (firstOperand.length > 0) {
+        display.textContent = currentValue.slice(0, -1);
+
+        if (!operatorSelected) {
+            firstOperand = display.textContent;
+            console.log(`First operand after backspace: ${firstOperand}`);
+        } else {
+            secondOperand = display.textContent;
+            console.log(`Second operand after backspace: ${secondOperand}`);
+        }
+    }
+})
+
+
+// Define decimal button
+const decimalButton = document.querySelector(".decimal-key")
+
+// Event listener for decimal button
+decimalButton.addEventListener("click", () => {
+    const display = document.querySelector(".display");
+
+    // Check if the current display value already contains a decimal
+    if (display.textContent.includes('.')) {
+        return;
+    }
+
+    // Append decimal point to the current operand
+    if (!operatorSelected) {
+        firstOperand += "."
+        updateDisplay(firstOperand);
+    } else {
+        secondOperand += ".";
+        updateDisplay(secondOperand);
+    }
+})
+
 
 function displayOperands() {
     const numberButtons = document.querySelectorAll(".numeric-keys");
     
     // Use .forEach method to iterate over each button.
     numberButtons.forEach((button) => {
-        // console.log(button);
         
         // For each button we add a click event listener.
         button.addEventListener("click", () => {
-            console.log(resultDisplayed);
             if (resultDisplayed) {
                 // Clear the display and secondOperand
                 firstOperand = "";
@@ -177,12 +201,8 @@ function displayOperands() {
             }
 
             if (!operatorSelected) {
-                console.log(resultDisplayed);
-                console.log(firstOperand);
-                console.log(typeof(firstOperand));
                 firstOperand += button.textContent;
                 typeof(firstOperand);
-                console.log(typeof(firstOperand));
                 updateDisplay(firstOperand);
                 console.log(`First operand: ${firstOperand}`);
             } else if (operatorSelected) {
