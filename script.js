@@ -63,6 +63,7 @@ function displayOperator() {
             } else if (!operatorSelected) {
             // Store the operator
             operator += button.textContent;
+            console.log(`Operator: ${operator}`);
             // Display the operator
             updateDisplay(operator);
             // Set the flag to true
@@ -80,7 +81,6 @@ const equalsButton = document.querySelector(".equals-button");
 // Event listener for equals button
 equalsButton.addEventListener("click", () => {        
     // Convert operands to numbers
-    console.log(firstOperand);
     const num1 = parseFloat(firstOperand);
     const num2 = parseFloat(secondOperand);
     // Perform the calculation and save it to a variable
@@ -96,8 +96,7 @@ equalsButton.addEventListener("click", () => {
         firstOperand = "";
         secondOperand = "";
     } else {
-        console.log(solution)
-        console.log(typeof(solution))
+        console.log(`Solution: ${solution}`);
         if (solution !== Math.floor(solution)) {
             // Round the solution to four decimal places
             solution = solution.toFixed(4);
@@ -172,13 +171,11 @@ function displayOperands() {
             if (!operatorSelected) {
                 firstOperand += button.textContent;
                 updateDisplay(firstOperand);
-                console.log(firstOperand);
-                console.log(typeof(firstOperand));
+                console.log(`First operand: ${firstOperand}`);
             } else if (operatorSelected) {
                 secondOperand += button.textContent;
                 updateDisplay(secondOperand);
-                console.log(secondOperand);
-                console.log(typeof(secondOperand));
+                console.log(`Second operand: ${secondOperand}`);
             }
         });
     });
