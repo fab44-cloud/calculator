@@ -68,6 +68,7 @@ function displayOperator() {
             updateDisplay(operator);
             // Set the flag to true
             operatorSelected = true;
+            resultDisplayed = false;
             }
         });
     });  
@@ -95,6 +96,7 @@ equalsButton.addEventListener("click", () => {
         operator = "";
         firstOperand = "";
         secondOperand = "";
+        resultDisplayed = true;
     } else {
         console.log(`Solution: ${solution}`);
         if (solution !== Math.floor(solution)) {
@@ -107,10 +109,11 @@ equalsButton.addEventListener("click", () => {
         }
 
         // Reset the calculator for the next calculation
-        operator = "";
         firstOperand = solution;
+        operator = "";
         secondOperand = "";
         resultDisplayed = true;
+        console.log("Result displayed is true");
     }
 })
 
@@ -129,27 +132,27 @@ function clearDisplay() {
 
 clearDisplay();
 
-// Define decimal button
-const decimalButton = document.querySelector(".decimal-key")
+// // Define decimal button
+// const decimalButton = document.querySelector(".decimal-key")
 
-// Event listener for decimal button
-decimalButton.addEventListener("click", () => {
-    const display = document.querySelector(".display");
+// // Event listener for decimal button
+// decimalButton.addEventListener("click", () => {
+//     const display = document.querySelector(".display");
 
-    // Check if the current display value already contains a decimal
-    if (display.textContent.includes('.')) {
-        return;
-    }
+//     // Check if the current display value already contains a decimal
+//     if (display.textContent.includes('.')) {
+//         return;
+//     }
 
-    // Append decimal point to the current operand
-    if (!operatorSelected) {
-        firstOperand += "."
-        updateDisplay(firstOperand);
-    } else {
-        secondOperand += ".";
-        updateDisplay(secondOperand);
-    }
-})
+//     // Append decimal point to the current operand
+//     if (!operatorSelected) {
+//         firstOperand += "."
+//         updateDisplay(firstOperand);
+//     } else {
+//         secondOperand += ".";
+//         updateDisplay(secondOperand);
+//     }
+// })
 
 function displayOperands() {
     const numberButtons = document.querySelectorAll(".numeric-keys");
@@ -160,16 +163,26 @@ function displayOperands() {
         
         // For each button we add a click event listener.
         button.addEventListener("click", () => {
+            console.log(resultDisplayed);
             if (resultDisplayed) {
                 // Clear the display and secondOperand
+                firstOperand = "";
                 secondOperand = "";
+                console.log("Clearing display");
                 updateDisplay("");
+                console.log("Display cleared")
 
                 // Reset the flag
                 resultDisplayed = false;
             }
+
             if (!operatorSelected) {
+                console.log(resultDisplayed);
+                console.log(firstOperand);
+                console.log(typeof(firstOperand));
                 firstOperand += button.textContent;
+                typeof(firstOperand);
+                console.log(typeof(firstOperand));
                 updateDisplay(firstOperand);
                 console.log(`First operand: ${firstOperand}`);
             } else if (operatorSelected) {
