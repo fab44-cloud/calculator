@@ -176,51 +176,84 @@ decimalButton.addEventListener("click", () => {
     if (!operatorSelected) {
         firstOperand += "."
         updateDisplay(firstOperand);
-    } else {
+    } else if (operatorSelected) {
         secondOperand += ".";
         updateDisplay(secondOperand);
     }
 })
 
 
-function displayOperands() {
-    const numberButtons = document.querySelectorAll(".numeric-keys");
-    
-    // Use .forEach method to iterate over each button.
-    numberButtons.forEach((button) => {
+const numberButtons = document.querySelectorAll(".numeric-keys");
+// Use .forEach method to iterate over each button.
+numberButtons.forEach((button) => {
         
-        // For each button we add a click event listener.
-        button.addEventListener("click", () => {
-            if (resultDisplayed) {
-                // Clear the display and secondOperand
-                firstOperand = "";
-                secondOperand = "";
-                console.log("Clearing display");
-                updateDisplay("");
-                console.log("Display cleared")
-
-                // Reset the flag
-                resultDisplayed = false;
-            }
-
-            if (!operatorSelected) {
-                firstOperand += button.textContent;
-                if (firstOperand.length < 13) {
-                    updateDisplay(firstOperand);
-                    console.log(`First operand: ${firstOperand}`);  
-                }
-
-            } else if (operatorSelected) {
-                secondOperand += button.textContent;
-                if (secondOperand.length < 13) {
-                    updateDisplay(secondOperand);
-                    console.log(`Second operand: ${secondOperand}`); 
-                }
-            }
-        });
+    // For each button we add a click event listener.
+    button.addEventListener("click", () => {
+        handleOperandInput(button.textContent);
     });
-}
+});
 
-displayOperands();
+function handleOperandInput(input) {
+    if (resultDisplayed) {
+        // Clear the display and secondOperand
+        firstOperand = "";
+        secondOperand = "";
+        console.log("Clearing display");
+        updateDisplay("");
+        console.log("Display cleared")
+
+        // Reset the flag
+        resultDisplayed = false;
+    }
+    
+    if (!operatorSelected) {
+        firstOperand += input;
+        if (firstOperand.length < 13) {
+            updateDisplay(firstOperand);
+            console.log(`First operand: ${firstOperand}`);  
+        }
+    } else if (operatorSelected) {
+        secondOperand += input;
+        if (secondOperand.length < 13) {
+            updateDisplay(secondOperand);
+            console.log(`Second operand: ${secondOperand}`);
+        }
+    }
+}
+    
+// Add keyboard support with an event listener
+document.addEventListener('keydown', function(e) {
+// Get the pressed key
+const key = e.key;
+    
+switch (key) {
+    case '0':
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+        // Append number to display
+        console.log(key);
+        handleOperandInput(key);
+        break;
+    case '+':
+    case '-':
+    case '*':
+    case '/':
+        console.log(key);
+        displayOperator(key);
+        break;
+    }
+});
+
+
+
+
+
 
 
