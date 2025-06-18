@@ -33,7 +33,7 @@ function divide(a,b) {
 // one of the basic math functions
 function operate(operator, firstOperand, secondOperand) {
     // The switch expression is evaluated once.
-    // The value of the expression is compared with the values of each case.
+    // The input of the expression is compared with the values of each case.
     // If there is a match, the associated code block is executed.
     // If there is no match, the default code block is executed.
     switch (operator) {
@@ -53,10 +53,10 @@ function operate(operator, firstOperand, secondOperand) {
 
 // operate("+", 2, 3)
 
-function updateDisplay(value) {
+function updateDisplay(input) {
     const display = document.querySelector(".display");
-    if (value.length < 13) {
-        display.textContent = value;  
+    if (input.length < 13) {
+        display.textContent = input;  
     }
 }
 
@@ -121,7 +121,6 @@ equalsButton.addEventListener("click", () => {
         operator = "";
         secondOperand = "";
         resultDisplayed = true;
-        console.log("Result displayed is true");
     }
 })
 
@@ -168,7 +167,7 @@ const decimalButton = document.querySelector(".decimal-key")
 // Event listener for decimal button
 decimalButton.addEventListener("click", () => {
 
-    // Check if the current display value already contains a decimal
+    // Check if the current display input already contains a decimal
     if (display.textContent.includes('.')) {
         return;
     }
@@ -206,13 +205,17 @@ function displayOperands() {
 
             if (!operatorSelected) {
                 firstOperand += button.textContent;
-                typeof(firstOperand);
-                updateDisplay(firstOperand);
-                console.log(`First operand: ${firstOperand}`);
+                if (firstOperand.length < 13) {
+                    updateDisplay(firstOperand);
+                    console.log(`First operand: ${firstOperand}`);  
+                }
+
             } else if (operatorSelected) {
                 secondOperand += button.textContent;
-                updateDisplay(secondOperand);
-                console.log(`Second operand: ${secondOperand}`);
+                if (secondOperand.length < 13) {
+                    updateDisplay(secondOperand);
+                    console.log(`Second operand: ${secondOperand}`); 
+                }
             }
         });
     });
