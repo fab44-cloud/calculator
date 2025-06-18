@@ -1,9 +1,14 @@
-// Variables 
+// --- Variables ---
 let operator = "";
 let firstOperand = "";
 let secondOperand = "";
 let operatorSelected = false;
 let resultDisplayed = false;
+
+// --- DOM Elements ---
+const display = document.querySelector(".display");
+
+// --- Functions ---
 
 
 function add(a,b) {
@@ -140,7 +145,6 @@ const backspaceButton = document.querySelector(".backspace-button");
 
 // Event listener for backspace button
 backspaceButton.addEventListener("click", () => {
-    const display = document.querySelector(".display");
     let currentValue = display.textContent
 
     if (firstOperand.length > 0) {
@@ -162,7 +166,6 @@ const decimalButton = document.querySelector(".decimal-key")
 
 // Event listener for decimal button
 decimalButton.addEventListener("click", () => {
-    const display = document.querySelector(".display");
 
     // Check if the current display value already contains a decimal
     if (display.textContent.includes('.')) {
