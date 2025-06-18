@@ -9,8 +9,7 @@ let resultDisplayed = false;
 const display = document.querySelector(".display");
 
 // --- Functions ---
-
-
+// Create functions for the basic math operators
 function add(a,b) {
     return a + b;
 }
@@ -30,6 +29,8 @@ function divide(a,b) {
     return a / b;
 }
 
+// Create function that takes an operator and two numbers and then calls
+// one of the basic math functions
 function operate(operator, firstOperand, secondOperand) {
     // The switch expression is evaluated once.
     // The value of the expression is compared with the values of each case.
