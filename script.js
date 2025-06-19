@@ -60,46 +60,6 @@ function updateDisplay(input) {
     }
 }
 
-// Define the equalsButton
-const equalsButton = document.querySelector(".equals-button");
-
-// Event listener for equals button
-equalsButton.addEventListener("click", () => {        
-    // Convert operands to numbers
-    const num1 = parseFloat(firstOperand);
-    const num2 = parseFloat(secondOperand);
-    // Perform the calculation and save it to a variable
-    let solution = operate(operator, num1, num2);
-    // Set the flag to false after the calculation has finished
-    operatorSelected = false;
-    
-    if (operator === "" || firstOperand === "" || secondOperand === "") {
-        return;
-    } else if (num2 === 0) {
-        updateDisplay(solution);
-        operator = "";
-        firstOperand = "";
-        secondOperand = "";
-        resultDisplayed = true;
-    } else {
-        console.log(`Solution: ${solution}`);
-        if (solution !== Math.floor(solution)) {
-            // Round the solution to four decimal places
-            solution = solution.toFixed(4);
-            updateDisplay(solution);
-        } else {
-            solution = solution.toFixed(0);
-            updateDisplay(solution);
-        }
-
-        // Reset the calculator for the next calculation
-        firstOperand = solution;
-        operator = "";
-        secondOperand = "";
-        resultDisplayed = true;
-    }
-})
-
 function clearDisplay() {
     // Define the clear button
     const clearButton = document.querySelector(".clear-key")
@@ -222,6 +182,50 @@ function handleOperatorInput(input) {
     }
 }
 
+// Define the equalsButton
+const equalsButton = document.querySelector(".equals-button");
+// Event listener for equals button
+equalsButton.addEventListener("click", () => {
+    calculate();
+})
+    
+function calculate() {
+        // Convert operands to numbers
+    const num1 = parseFloat(firstOperand);
+    const num2 = parseFloat(secondOperand);
+    // Perform the calculation and save it to a variable
+    let solution = operate(operator, num1, num2);
+    // Set the flag to false after the calculation has finished
+    operatorSelected = false;
+    
+    if (operator === "" || firstOperand === "" || secondOperand === "") {
+        return;
+    } else if (num2 === 0) {
+        updateDisplay(solution);
+        operator = "";
+        firstOperand = "";
+        secondOperand = "";
+        resultDisplayed = true;
+    } else {
+        console.log(`Solution: ${solution}`);
+        if (solution !== Math.floor(solution)) {
+            // Round the solution to four decimal places
+            solution = solution.toFixed(4);
+            updateDisplay(solution);
+        } else {
+            solution = solution.toFixed(0);
+            updateDisplay(solution);
+        }
+
+        // Reset the calculator for the next calculation
+        firstOperand = solution;
+        operator = "";
+        secondOperand = "";
+        resultDisplayed = true;
+    }
+}
+
+
     
 // Add keyboard support with an event listener
 document.addEventListener('keydown', function(e) {
@@ -249,6 +253,10 @@ switch (key) {
     case '/':
         console.log(key);
         handleOperatorInput(key);
+        break;
+    case 'Enter':
+    case '=':
+        calculate();
         break;
     }
 });
