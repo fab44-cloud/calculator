@@ -163,15 +163,17 @@ function calculate() {
     const num2 = parseFloat(secondOperand);
     // Perform the calculation and save it to a variable
     let solution = operate(operator, num1, num2);
+    console.log(solution);
+    console.log(typeof(solution));
     // Set the flag to false after the calculation has finished
     operatorSelected = false;
     
     if (operator === "" || firstOperand === "" || secondOperand === "") {
         return;
-    } else if (num2 === 0) {
+    } else if (solution === "Undefined") {
         updateDisplay(solution);
-        operator = "";
         firstOperand = "";
+        operator = "";
         secondOperand = "";
         resultDisplayed = true;
     } else {
