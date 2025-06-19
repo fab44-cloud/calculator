@@ -75,28 +75,6 @@ function clearDisplay() {
 
 clearDisplay();
 
-
-// Define backspace button
-const backspaceButton = document.querySelector(".backspace-button");
-
-// Event listener for backspace button
-backspaceButton.addEventListener("click", () => {
-    let currentValue = display.textContent
-
-    if (firstOperand.length > 0) {
-        display.textContent = currentValue.slice(0, -1);
-
-        if (!operatorSelected) {
-            firstOperand = display.textContent;
-            console.log(`First operand after backspace: ${firstOperand}`);
-        } else {
-            secondOperand = display.textContent;
-            console.log(`Second operand after backspace: ${secondOperand}`);
-        }
-    }
-})
-
-
 // Define decimal button
 const decimalButton = document.querySelector(".decimal-key")
 
@@ -225,6 +203,26 @@ function calculate() {
     }
 }
 
+// Define backspace button
+const backspaceButton = document.querySelector(".backspace-button");
+
+// Event listener for backspace button
+backspaceButton.addEventListener("click", () => {
+    backspace();
+})
+
+function backspace() {
+    if (secondOperand !== "") {
+        secondOperand = secondOperand.slice(0, -1);
+        updateDisplay(secondOperand);
+        console.log(`Second operand after backspace: ${secondOperand}`);
+    } else if (firstOperand !== "") {
+        firstOperand = firstOperand.slice(0, -1);
+        updateDisplay(firstOperand);
+        console.log(`First operand after backspace: ${firstOperand}`);
+    }
+}
+
 
     
 // Add keyboard support with an event listener
@@ -243,9 +241,11 @@ switch (key) {
     case '7':
     case '8':
     case '9':
-        // Append number to display
         console.log(key);
+        // Append number to display
         handleOperandInput(key);
+        // Prevent default browser behavior (e.g., typing in a form field)
+        e.preventDefault();
         break;
     case '+':
     case '-':
@@ -257,6 +257,9 @@ switch (key) {
     case 'Enter':
     case '=':
         calculate();
+        break;
+    case 'Backspace':
+        backspace();
         break;
     }
 });
