@@ -60,21 +60,6 @@ function updateDisplay(input) {
     }
 }
 
-function clearDisplay() {
-    // Define the clear button
-    const clearButton = document.querySelector(".clear-key")
-
-    // Event listener for clear button
-    clearButton.addEventListener("click", () => {
-        operator = "";
-        firstOperand = "";
-        secondOperand = "";
-        updateDisplay("");
-    })   
-}
-
-clearDisplay();
-
 // Define decimal button
 const decimalButton = document.querySelector(".decimal-key")
 
@@ -223,8 +208,21 @@ function backspace() {
     }
 }
 
+// Define the clear button
+const clearButton = document.querySelector(".clear-key")
 
-    
+// Event listener for clear button
+clearButton.addEventListener("click", () => {
+    clearDisplay();    
+})    
+
+function clearDisplay() {
+    operator = "";
+    firstOperand = "";
+    secondOperand = "";
+    updateDisplay("");
+}   
+
 // Add keyboard support with an event listener
 document.addEventListener('keydown', function(e) {
 // Get the pressed key
@@ -260,6 +258,11 @@ switch (key) {
         break;
     case 'Backspace':
         backspace();
+        break;
+    case 'c':
+    case 'C':
+    case 'Escape':
+        clearDisplay();
         break;
     }
 });
