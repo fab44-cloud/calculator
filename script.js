@@ -242,7 +242,6 @@ switch (key) {
     case '8':
     case '9':
         console.log(key);
-        // Append number to display
         handleOperandInput(key);
         // Prevent default browser behavior (e.g., typing in a form field)
         e.preventDefault();
@@ -253,21 +252,29 @@ switch (key) {
     case '/':
         console.log(key);
         handleOperatorInput(key);
+        // Prevent default browser behavior
+        e.preventDefault();
         break;
     case 'Enter':
     case '=':
         calculate();
+        // Prevent default browser behavior (e.g., submitting a form)
+        e.preventDefault();
         break;
     case 'Backspace':
         backspace();
+        // Prevent default browser behavior
+        e.preventDefault();
         break;
     case 'c':
     case 'C':
     case 'Escape':
         clearDisplay();
+        e.preventDefault();
         break;
     case '.':
         displayDecimal();
+        e.preventDefault();
         break;
     }
 });
