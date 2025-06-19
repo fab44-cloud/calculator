@@ -60,30 +60,6 @@ function updateDisplay(input) {
     }
 }
 
-function displayOperator() {
-    // Event listener for operator buttons
-    const operatorButtons = document.querySelectorAll(".operator-keys");
-    operatorButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            if (firstOperand === "") {
-                return;
-            } else if (!operatorSelected) {
-            // Store the operator
-            operator += button.textContent;
-            console.log(`Operator: ${operator}`);
-            // Display the operator
-            updateDisplay(operator);
-            // Set the flag to true
-            operatorSelected = true;
-            resultDisplayed = false;
-            }
-        });
-    });  
-}
-
-displayOperator();
-
-
 // Define the equalsButton
 const equalsButton = document.querySelector(".equals-button");
 
@@ -182,7 +158,7 @@ decimalButton.addEventListener("click", () => {
     }
 })
 
-
+// Create event listener for number buttons
 const numberButtons = document.querySelectorAll(".numeric-keys");
 // Use .forEach method to iterate over each button.
 numberButtons.forEach((button) => {
@@ -193,6 +169,7 @@ numberButtons.forEach((button) => {
     });
 });
 
+// Create function for the first and second operands
 function handleOperandInput(input) {
     if (resultDisplayed) {
         // Clear the display and secondOperand
@@ -220,6 +197,31 @@ function handleOperandInput(input) {
         }
     }
 }
+
+// Create event listener for operator buttons
+const operatorButtons = document.querySelectorAll(".operator-keys");
+operatorButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        handleOperatorInput(button.textContent);
+    });
+});  
+
+// Create function for the operator 
+function handleOperatorInput(input) {
+    if (firstOperand === "") {
+        return;
+    } else if (!operatorSelected) {
+        // Store the operator
+        operator += input;
+        console.log(`Operator: ${operator}`);
+        // Display the operator
+        updateDisplay(operator);
+        // Set the flag to true
+        operatorSelected = true;
+        resultDisplayed = false;
+    }
+}
+
     
 // Add keyboard support with an event listener
 document.addEventListener('keydown', function(e) {
@@ -246,7 +248,7 @@ switch (key) {
     case '*':
     case '/':
         console.log(key);
-        displayOperator(key);
+        handleOperatorInput(key);
         break;
     }
 });
