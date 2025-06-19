@@ -60,27 +60,6 @@ function updateDisplay(input) {
     }
 }
 
-// Define decimal button
-const decimalButton = document.querySelector(".decimal-key")
-
-// Event listener for decimal button
-decimalButton.addEventListener("click", () => {
-
-    // Check if the current display input already contains a decimal
-    if (display.textContent.includes('.')) {
-        return;
-    }
-
-    // Append decimal point to the current operand
-    if (!operatorSelected) {
-        firstOperand += "."
-        updateDisplay(firstOperand);
-    } else if (operatorSelected) {
-        secondOperand += ".";
-        updateDisplay(secondOperand);
-    }
-})
-
 // Create event listener for number buttons
 const numberButtons = document.querySelectorAll(".numeric-keys");
 // Use .forEach method to iterate over each button.
@@ -221,7 +200,30 @@ function clearDisplay() {
     firstOperand = "";
     secondOperand = "";
     updateDisplay("");
-}   
+}
+
+// Define decimal button
+const decimalButton = document.querySelector(".decimal-key")
+
+// Event listener for decimal button
+decimalButton.addEventListener("click", () => {
+    displayDecimal();
+})
+
+function displayDecimal() {
+    // Check if the current display input already contains a decimal
+    if (display.textContent.includes('.')) {
+        return;
+    }
+    // Append decimal point to the current operand
+    if (!operatorSelected) {
+        firstOperand += "."
+        updateDisplay(firstOperand);
+    } else if (operatorSelected) {
+        secondOperand += ".";
+        updateDisplay(secondOperand);
+    }
+}
 
 // Add keyboard support with an event listener
 document.addEventListener('keydown', function(e) {
@@ -263,6 +265,9 @@ switch (key) {
     case 'C':
     case 'Escape':
         clearDisplay();
+        break;
+    case '.':
+        displayDecimal();
         break;
     }
 });
