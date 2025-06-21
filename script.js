@@ -116,10 +116,16 @@ function handleOperatorInput(input) {
     if (firstOperand === "") {
         // If the first operand is empty, allow the minus sign to be a negative sign
         if (input === "-") {
+            console.log(input);
             firstOperand += "-";
             updateDisplay(firstOperand);
         }
         return;
+    } else if (secondOperand === "") {
+        if (input === "-") {
+            secondOperand += "-";
+            updateDisplay(secondOperand);
+        }
     }
 
     if (!operatorSelected) {
