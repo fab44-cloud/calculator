@@ -35,29 +35,28 @@ body {
 
 .display {
     border: 1px solid slateblue;
-    height: 60px;
+    min-height: 4.5rem;
     padding: 10px;
     display: flex;
     justify-content: flex-end;
     align-items: end;
     background-color: beige;
-    font-size: 32px;
+    font-size: 2rem;
 }
 
 .first-row {
-    margin-bottom: 8px;
     display: flex;
     justify-content: flex-end;
 }
 
 .other-rows {
-    margin-top: 8px;
+    margin-top: 0.8rem;
     display: flex;
     justify-content: space-between;
 }
 
 button {
-    width: 64px;
+    width: 25%;
     min-height: 64px;
     color: ivory;
     background-color: rgb(6, 174, 174);
@@ -68,8 +67,7 @@ button {
 }
 
 h1 {
-    padding: 16px 16px;
+    padding: 1rem 1rem;
     background-color: rgb(226, 114, 91);
-    margin: 0px;
     color: ivory;
 }
