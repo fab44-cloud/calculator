@@ -86,14 +86,12 @@ function handleOperandInput(input) {
     }
     
     if (!operatorSelected) {
-        // Handle regular digit input for the first operand
         firstOperand += input;
         if (firstOperand.length < 13) {
             updateDisplay(firstOperand);
             console.log(`First operand: ${firstOperand}`);  
         }
-    } else {
-        // Handle regular digit input for the second operand
+    } else if (operatorSelected) {
         secondOperand += input;
         if (secondOperand.length < 13) {
             updateDisplay(secondOperand);
@@ -113,23 +111,10 @@ operatorButtons.forEach(button => {
 // Create function for the operator 
 function handleOperatorInput(input) {
     if (firstOperand === "") {
-        // If the first operand is empty, allow the minus sign to be a negative sign
-        if (input === "-") {
-            console.log(input);
-            firstOperand += "-";
-            updateDisplay(firstOperand);
-        }
         return;
-    } else if (secondOperand === "") {
-        if (input === "-") {
-            secondOperand += "-";
-            updateDisplay(secondOperand);
-        }
-    }
-
-    if (!operatorSelected) {
+    } else if (!operatorSelected) {
         // Store the operator
-        operator += input;
+        operator = input;
         console.log(`Operator: ${operator}`);
         // Display the operator
         updateDisplay(operator);
