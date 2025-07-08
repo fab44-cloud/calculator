@@ -24,13 +24,14 @@ body {
 .calculator-container {
     border-radius: 1%;
     /* border: 1px solid green; */
-    padding: 2rem 1rem;
+    /* padding: 2rem 1rem; */
     width: 50%;
     max-width: 35ch;
     display: flex;
     flex-direction: column;
     gap: 16px;
     background-color: rgb(98, 98, 179);
+    padding: clamp(1rem, 1.5vmax, 3rem);
 }
 
 .display {
@@ -69,7 +70,7 @@ button {
 }
 
 h1 {
-    padding: 1rem 1rem;
+    padding: clamp(1rem, 2vmax, 4rem);
     background-color: rgb(226, 114, 91);
     color: ivory;
 }
