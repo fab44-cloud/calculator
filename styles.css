@@ -23,10 +23,8 @@ body {
 
 .calculator-container {
     border-radius: 1%;
-    /* border: 1px solid green; */
-    /* padding: 2rem 1rem; */
-    width: 50%;
-    max-width: 35ch;
+    width: 90%;
+    max-width: 22rem;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -34,15 +32,21 @@ body {
     padding: clamp(1rem, 1.5vmax, 3rem);
 }
 
+@media (min-width: 400px) {
+    .calculator-container {
+        width: 20rem;
+    }
+}
+
 .display {
     border: 1px solid slateblue;
-    min-height: 4.5rem;
-    padding: 10px;
+    min-height: 5.2rem;
+    padding: clamp(0.5rem, 1vmax, 1rem);
     display: flex;
     justify-content: flex-end;
     align-items: end;
     background-color: beige;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 5vmax, 2rem);
 }
 
 .first-row {
