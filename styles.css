@@ -1,3 +1,18 @@
+:root {
+    /* Colors */
+    --clr-primary: rgb(98, 98, 179);
+    --clr-secondary: rgb(6, 174, 174);
+    --clr-accent: rgb(226, 114, 91);
+    --clr-dark: teal;
+    --clr-text: ivory;
+    --clr-display-bg: beige;
+
+    /* Spacing */
+    --space-sm: 1rem;
+    --space-md: 1.5vmax;
+    --space-lg: 3rem;
+}
+
 /* Apply to all elements and pseudo-elements */
 /* With border-box, the width and height of an element include the content, 
 padding, and border. */
@@ -28,8 +43,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    background-color: rgb(98, 98, 179);
-    padding: clamp(1rem, 1.5vmax, 3rem);
+    background-color: var(--clr-primary);
+    padding: clamp(var(--space-sm), var(--space-md), var(--space-lg));
 }
 
 @media (min-width: 400px) {
@@ -45,7 +60,7 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: end;
-    background-color: beige;
+    background-color: var(--clr-display-bg);
     font-size: clamp(1.5rem, 5vmax, 2rem);
 }
 
@@ -63,18 +78,18 @@ body {
 button {
     width: 25%;
     /* min-height: 64px; */
-    color: ivory;
-    background-color: rgb(6, 174, 174);
+    color: var(--clr-text);
+    background-color: var(--clr-secondary);
     font-weight: 1000;
     /* font-size: 1.4rem; */
     font-size: clamp(1rem, 4vh, 1.4rem);
     line-height: calc(1.2rem + 4vh);
     border-radius: 50%;
-    border-color: teal;
+    border-color: var(--clr-dark);
 }
 
 h1 {
-    padding: clamp(1rem, 2vmax, 4rem);
-    background-color: rgb(226, 114, 91);
-    color: ivory;
+    padding: clamp(var(--space-sm), 2vmax, 4rem);
+    background-color: var(--clr-accent);
+    color: var(--clr-text);
 }
