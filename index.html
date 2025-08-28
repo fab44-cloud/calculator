@@ -11,36 +11,32 @@
     <h1>Calculator</h1>
     <div class="container">
       <div class="calculator-container">
-        <div class="display"></div>
+        <div class="display" aria-live="polite"></div>
         <div class="keypad">
-          <div class="first-row">
-            <button class="clear-key">AC</button>
-            <button class="backspace-button">DEL</button>
-          </div>
-          <div class="other-rows">
-            <button id="seven" class="numeric-keys">7</button>
-            <button id="eight" class="numeric-keys">8</button>
-            <button class="numeric-keys">9</button>
-            <button class="operator-keys">*</button>
-          </div>
-          <div class="other-rows">
-            <button class="numeric-keys">4</button>
-            <button class="numeric-keys">5</button>
-            <button class="numeric-keys">6</button>
-            <button class="operator-keys">-</button>
-          </div>
-          <div class="other-rows">
-            <button class="numeric-keys">1</button>
-            <button class="numeric-keys">2</button>
-            <button class="numeric-keys">3</button>
-            <button class="operator-keys">+</button>
-          </div>
-          <div class="other-rows">
-            <button class="numeric-keys">0</button>
-            <button class="decimal-key">.</button>
-            <button class="equals-button">=</button>
-            <button class="operator-keys">/</button>
-          </div>
+          <!-- Top row buttons -->
+          <button class="clear-key" aria-label="Clear">AC</button>
+          <button class="backspace-button" aria-label="Delete">DEL</button>
+          <button class="operator-keys" aria-label="Multiply">*</button>
+          <button class="operator-keys" aria-label="Divide">/</button>
+
+          <!-- Number and operator buttons -->
+          <button id="seven" class="numeric-keys">7</button>
+          <button id="eight" class="numeric-keys">8</button>
+          <button class="numeric-keys">9</button>
+          <button class="operator-keys" aria-label="Subtract">-</button>
+
+          <button class="numeric-keys">4</button>
+          <button class="numeric-keys">5</button>
+          <button class="numeric-keys">6</button>
+          <button class="operator-keys" aria-label="Add">+</button>
+
+          <button class="numeric-keys">1</button>
+          <button class="numeric-keys">2</button>
+          <button class="numeric-keys">3</button>
+          <button class="decimal-key" aria-label="Decimal">.</button>
+
+          <button class="numeric-keys zero-key">0</button>
+          <button class="equals-button" aria-lable="Equals">=</button>
         </div>
       </div>
     </div>
