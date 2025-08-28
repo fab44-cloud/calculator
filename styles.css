@@ -77,15 +77,24 @@ body {
 
 button {
     width: 25%;
-    /* min-height: 64px; */
     color: var(--clr-text);
     background-color: var(--clr-secondary);
     font-weight: 1000;
-    /* font-size: 1.4rem; */
     font-size: clamp(1rem, 4vh, 1.4rem);
     line-height: calc(1.2rem + 4vh);
     border-radius: 50%;
     border-color: var(--clr-dark);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: rgb(4, 139, 139);
+}
+
+button:active {
+    background-color: rgb(2, 100, 100);
+    transform: scale(0.98);
 }
 
 h1 {
