@@ -76,7 +76,7 @@ numberButtons.forEach((button) => {
 
 // Create function for the first and second operands
 function handleOperandInput(input) {
-    if (resultDisplayed) {
+    if (calculator.resultDisplayed) {
         // Clear the display and secondOperand
         firstOperand = "";
         secondOperand = "";
@@ -88,7 +88,7 @@ function handleOperandInput(input) {
         resultDisplayed = false;
     }
     
-    if (!operatorSelected) {
+    if (!calculator.operatorSelected) {
         firstOperand += input;
         if (firstOperand.length < 13) {
             updateDisplay(firstOperand);
@@ -135,38 +135,37 @@ equalsButton.addEventListener("click", () => {
 })
     
 function calculate() {
-        // Convert operands to numbers
-    const num1 = parseFloat(firstOperand);
-    const num2 = parseFloat(secondOperand);
-    // Perform the calculation and save it to a variable
-    let solution = operate(operator, num1, num2);
-    // Set the flag to false after the calculation has finished
-    operatorSelected = false;
-    
-    if (operator === "" || firstOperand === "" || secondOperand === "") {
+    // Input validation
+    if (calculator.operator === null || calculator.firstOperand === null || calculator.waitingForSecondOperand === false) {
         return;
-    } else if (solution === "Undefined") {
+    }
+
+    // Convert operands to numbers
+    const num1 = parseFloat(calculator.firstOperand);
+    const num2 = parseFloat(calculator.displayValue);
+    // Perform the calculation and save it to a variable
+    let solution = operate(calculator.operator, num1, num2);
+    // Set the flag to false after the calculation has finished
+    
+    if (solution === "Undefined") {
         updateDisplay(solution);
-        firstOperand = "";
-        operator = "";
-        secondOperand = "";
-        resultDisplayed = true;
+        clearDisplay();
     } else {
         console.log(`Solution: ${solution}`);
-        if (solution !== Math.floor(solution)) {
+        // Handle floating point results
+        if (solution % 1 !== 0) {
             // Round the solution to four decimal places
             solution = solution.toFixed(4);
-            updateDisplay(solution);
         } else {
-            solution = solution.toFixed(0);
-            updateDisplay(solution);
+            solution = Math.floor(solution);
         }
 
-        // Reset the calculator for the next calculation
-        firstOperand = solution;
-        operator = "";
-        secondOperand = "";
-        resultDisplayed = true;
+        updateDisplay(solution);
+        // Reset state for next operation
+        calculator.displayValue = solution.toString();
+        calculator.firstOperand = solution;
+        calculator.operator = null;
+        calculator.waitingForSecondOperand = true;
     }
 }
 
