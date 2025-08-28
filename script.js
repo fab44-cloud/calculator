@@ -1,9 +1,12 @@
-// --- Variables ---
-let operator = "";
-let firstOperand = "";
-let secondOperand = "";
-let operatorSelected = false;
-let resultDisplayed = false;
+const calculator = {
+    operator: null,
+    firstOperand: null,
+    secondOperand: "",
+    operatorSelected: false,
+    resultDisplayed: false,
+    waitingForSecondOperand: false,
+    displayValue: "",
+};
 
 // --- DOM Elements ---
 const display = document.querySelector(".display");
