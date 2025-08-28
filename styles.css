@@ -28,6 +28,12 @@ body {
     line-height: 1.5;
 }
 
+h1 {
+    padding: clamp(var(--space-sm), 2vmax, 4rem);
+    background-color: var(--clr-accent);
+    color: var(--clr-text);
+}
+
 .container {
     display: flex;
     flex: 1;
@@ -64,19 +70,14 @@ body {
     font-size: clamp(1.5rem, 5vmax, 2rem);
 }
 
-.first-row {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.other-rows {
-    margin-top: 0.8rem;
-    display: flex;
-    justify-content: space-between;
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
 }
 
 button {
-    width: 25%;
+    width: auto;
     color: var(--clr-text);
     background-color: var(--clr-secondary);
     font-weight: 1000;
@@ -86,6 +87,9 @@ button {
     border-color: var(--clr-dark);
     cursor: pointer;
     transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button:hover {
@@ -95,10 +99,4 @@ button:hover {
 button:active {
     background-color: rgb(2, 100, 100);
     transform: scale(0.98);
-}
-
-h1 {
-    padding: clamp(var(--space-sm), 2vmax, 4rem);
-    background-color: var(--clr-accent);
-    color: var(--clr-text);
 }
