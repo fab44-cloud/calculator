@@ -54,13 +54,22 @@ function operate(operator, firstOperand, secondOperand) {
     }
 }
 
-// operate("+", 2, 3)
-
+// --- Display Functions ---
 function updateDisplay(input) {
-    const display = document.querySelector(".display");
-    if (input.length < 13) {
+    if (input.toString().length < 13) {
         display.textContent = input;  
     }
+}
+
+function clearDisplay() {
+    calculator.operator = null;
+    calculator.firstOperand = null;
+    calculator.secondOperand = "";
+    calculator.operatorSelected = false;
+    calculator.resultDisplayed = false;
+    calculator.waitingForSecondOperand = false;
+    calculator.displayValue = "";
+    updateDisplay("");
 }
 
 // Create event listener for number buttons
