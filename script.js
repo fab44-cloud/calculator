@@ -113,18 +113,17 @@ operatorButtons.forEach(button => {
 
 // Create function for the operator 
 function handleOperatorInput(input) {
-    if (firstOperand === "") {
-        return;
-    } else if (!operatorSelected) {
-        // Store the operator
-        operator = input;
-        console.log(`Operator: ${operator}`);
-        // Display the operator
-        updateDisplay(operator);
-        // Set the flag to true
-        operatorSelected = true;
-        resultDisplayed = false;
+    if (firstOperand !== "" && operatorSelected && secondOperand !== "") {
+        calculate(); // Calculate result of the previous operation
+        // The result is now the new firstOperand
     }
+    // Store the operator
+    operator = input;
+    // Set the flag to true
+    operatorSelected = true;
+    resultDisplayed = false;
+    updateDisplay(operator);
+    console.log(`Operator: ${operator}`);
 }
 
 // Define the equalsButton
@@ -213,7 +212,7 @@ decimalButton.addEventListener("click", () => {
 })
 
 function handleDecimal() {
-    if (operatorSelected) {
+    if (calculator.operatorSelected) {
         if (!secondOperand.includes('.')) {
             secondOperand += '.';
             updateDisplay(secondOperand);
