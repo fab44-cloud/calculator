@@ -89,10 +89,10 @@ function handleOperandInput(input) {
     }
     
     if (!calculator.operatorSelected) {
-        firstOperand += input;
-        if (firstOperand.length < 13) {
-            updateDisplay(firstOperand);
-            console.log(`First operand: ${firstOperand}`);  
+        calculator.firstOperand += input;
+        if (calculator.firstOperand.length < 13) {
+            updateDisplay(calculator.firstOperand);
+            console.log(`First operand: ${calculator.firstOperand}`);  
         }
     } else if (operatorSelected) {
         secondOperand += input;
@@ -209,21 +209,20 @@ const decimalButton = document.querySelector(".decimal-key")
 
 // Event listener for decimal button
 decimalButton.addEventListener("click", () => {
-    displayDecimal();
+    handleDecimal();
 })
 
-function displayDecimal() {
-    // Check if the current display input already contains a decimal
-    if (display.textContent.includes('.')) {
-        return;
-    }
-    // Append decimal point to the current operand
-    if (!operatorSelected) {
-        firstOperand += "."
-        updateDisplay(firstOperand);
-    } else if (operatorSelected) {
-        secondOperand += ".";
-        updateDisplay(secondOperand);
+function handleDecimal() {
+    if (operatorSelected) {
+        if (!secondOperand.includes('.')) {
+            secondOperand += '.';
+            updateDisplay(secondOperand);
+        }
+    } else {
+        if (!firstOperand.includes('.')) {
+            firstOperand += ".";
+            updateDisplay(firstOperand);
+        }  
     }
 }
 
@@ -275,7 +274,7 @@ switch (key) {
         e.preventDefault();
         break;
     case '.':
-        displayDecimal();
+        handleDecimal();
         e.preventDefault();
         break;
     }
