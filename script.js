@@ -160,13 +160,6 @@ function backspace() {
     }
 }
 
-function clearDisplay() {
-    operator = "";
-    firstOperand = "";
-    secondOperand = "";
-    updateDisplay("");
-}
-
 // --- Decimal Handler ---
 function handleDecimal() {
     if (!calculator.operatorSelected) {
