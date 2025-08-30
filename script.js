@@ -177,15 +177,20 @@ backspaceButton.addEventListener("click", () => {
     backspace();
 })
 
+// --- Backspace Function ---
 function backspace() {
-    if (secondOperand !== "") {
-        secondOperand = secondOperand.slice(0, -1);
-        updateDisplay(secondOperand);
-        console.log(`Second operand after backspace: ${secondOperand}`);
-    } else if (firstOperand !== "") {
-        firstOperand = firstOperand.slice(0, -1);
-        updateDisplay(firstOperand);
-        console.log(`First operand after backspace: ${firstOperand}`);
+    if (calculator.secondOperand !== "") {
+        calculator.secondOperand = calculator.secondOperand.slice(0, -1);
+        updateDisplay(calculator.secondOperand);
+        console.log(`Second operand after backspace: ${calculator.secondOperand}`);
+    } else if (calculator.operatorSelected) {
+        calculator.operator = null;
+        calculator.operatorSelected = false;
+        updateDisplay(calculator.firstOperand);
+        console.log(`First operand after backspace: ${calculator.firstOperand}`);
+    } else if (calculator.firstOperand !== null) {
+        calculator.firstOperand = calculator.firstOperand.slice(0, -1);
+        updateDisplay(calculator.firstOperand);
     }
 }
 
@@ -212,6 +217,7 @@ decimalButton.addEventListener("click", () => {
     handleDecimal();
 })
 
+// --- Decimal Handler ---
 function handleDecimal() {
     if (calculator.operatorSelected) {
         if (!secondOperand.includes('.')) {
