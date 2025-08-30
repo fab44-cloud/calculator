@@ -107,19 +107,22 @@ operatorButtons.forEach(button => {
     });
 });  
 
-// Create function for the operator 
+// --- Operator Input Handler --- 
 function handleOperatorInput(input) {
-    if (firstOperand !== "" && operatorSelected && secondOperand !== "") {
+    if (calculator.firstOperand === null) {
+        return;
+    }
+
+    if (firstOperand !== null && calculator.operatorSelected && calculator.secondOperand !== "") {
         calculate(); // Calculate result of the previous operation
         // The result is now the new firstOperand
     }
-    // Store the operator
-    operator = input;
-    // Set the flag to true
-    operatorSelected = true;
-    resultDisplayed = false;
-    updateDisplay(operator);
-    console.log(`Operator: ${operator}`);
+    
+    calculator.operator = input;
+    calculator.operatorSelected = true;
+    calculator.waitingForSecondOperand = true;
+    updateDisplay(input);
+    console.log(`Operator: ${calculator.operator}`);
 }
 
 // Define the equalsButton
@@ -128,7 +131,8 @@ const equalsButton = document.querySelector(".equals-button");
 equalsButton.addEventListener("click", () => {
     calculate();
 })
-    
+
+// --- Calculate Function ---
 function calculate() {
     // Input validation
     if (calculator.operator === null || calculator.firstOperand === null || calculator.waitingForSecondOperand === false) {
