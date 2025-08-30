@@ -92,6 +92,7 @@ function handleOperandInput(input) {
     if (!calculator.operatorSelected) {
         calculator.firstOperand = calculator.firstOperand === null ? input : calculator.firstOperand + input;
         updateDisplay(calculator.firstOperand);
+        console.log(`First operand: ${calculator.firstOperand}`);
     } else {
         calculator.secondOperand += input;
         updateDisplay(calculator.secondOperand);
@@ -134,17 +135,15 @@ equalsButton.addEventListener("click", () => {
 
 // --- Calculate Function ---
 function calculate() {
-    // Input validation
-    if (calculator.operator === null || calculator.firstOperand === null || calculator.waitingForSecondOperand === false) {
+    if (calculator.firstOperand === null || calculator.secondOperand === "" || calculator.operator === null) {
         return;
     }
 
     // Convert operands to numbers
     const num1 = parseFloat(calculator.firstOperand);
-    const num2 = parseFloat(calculator.displayValue);
+    const num2 = parseFloat(calculator.secondOperand);
     // Perform the calculation and save it to a variable
     let solution = operate(calculator.operator, num1, num2);
-    // Set the flag to false after the calculation has finished
     
     if (solution === "Undefined") {
         updateDisplay(solution);
@@ -158,13 +157,15 @@ function calculate() {
         } else {
             solution = Math.floor(solution);
         }
-
         updateDisplay(solution);
+
         // Reset state for next operation
-        calculator.displayValue = solution.toString();
-        calculator.firstOperand = solution;
+        calculator.firstOperand = solution.toString();
+        calculator.secondOperand = "";
         calculator.operator = null;
-        calculator.waitingForSecondOperand = true;
+        calculator.operatorSelected = false;
+        calculator.resultDisplayed = true;
+        calculator.waitingForSecondOperand = false;
     }
 }
 
