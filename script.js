@@ -93,9 +93,9 @@ function handleOperandInput(input) {
         calculator.firstOperand = calculator.firstOperand === null ? input : calculator.firstOperand + input;
         updateDisplay(calculator.firstOperand);
     } else {
-        secondOperand += input;
-        updateDisplay(secondOperand);
-        console.log(`Second operand: ${secondOperand}`);
+        calculator.secondOperand += input;
+        updateDisplay(calculator.secondOperand);
+        console.log(`Second operand: ${calculator.secondOperand}`);
     }
 }
 
@@ -113,7 +113,7 @@ function handleOperatorInput(input) {
         return;
     }
 
-    if (firstOperand !== null && calculator.operatorSelected && calculator.secondOperand !== "") {
+    if (calculator.firstOperand !== null && calculator.operatorSelected && calculator.secondOperand !== "") {
         calculate(); // Calculate result of the previous operation
         // The result is now the new firstOperand
     }
