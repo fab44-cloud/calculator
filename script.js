@@ -76,16 +76,20 @@ function clearDisplay() {
 function handleOperandInput(input) {
     if (calculator.resultDisplayed) {
         clearDisplay();
-    }
-    
-    if (!calculator.operatorSelected) {
-        calculator.firstOperand = calculator.firstOperand === null ? input : calculator.firstOperand + input;
+        calculator.firstOperand = input;
         updateDisplay(calculator.firstOperand);
-        console.log(`First operand: ${calculator.firstOperand}`);
-    } else {
+    }
+    // Handle operand input after an operator.
+    else if (calculator.operatorSelected) {
         calculator.secondOperand += input;
         updateDisplay(calculator.secondOperand);
         console.log(`Second operand: ${calculator.secondOperand}`);
+    }
+    // Handle first operand input.
+    else {
+        calculator.firstOperand = calculator.firstOperand === null ? input : calculator.firstOperand + input;
+        updateDisplay(calculator.firstOperand);
+        console.log(`First operand: ${calculator.firstOperand}`);
     }
 }
 
@@ -94,15 +98,16 @@ function handleOperatorInput(input) {
     if (calculator.firstOperand === null) {
         return;
     }
-
-    if (calculator.firstOperand !== null && calculator.operatorSelected && calculator.secondOperand !== "") {
+    // If an operation is queued, calculate it first.
+    if (calculator.operatorSelected && calculator.secondOperand !== "") {
         calculate(); // Calculate result of the previous operation
-        // The result is now the new firstOperand
+        // The result of 'calculate()' becomes the new firstOperand
     }
     
     calculator.operator = input;
     calculator.operatorSelected = true;
-    calculator.waitingForSecondOperand = true;
+    calculator.secondOperand = "";
+    calculator.resultDisplayed = false;
     updateDisplay(input);
     console.log(`Operator: ${calculator.operator}`);
 }
@@ -124,22 +129,19 @@ function calculate() {
         clearDisplay();
     } else {
         console.log(`Solution: ${solution}`);
+
         // Handle floating point results
         if (solution % 1 !== 0) {
-            // Round the solution to four decimal places
             solution = solution.toFixed(4);
-        } else {
-            solution = Math.floor(solution);
         }
+        
         updateDisplay(solution);
-
         // Reset state for next operation
         calculator.firstOperand = solution.toString();
         calculator.secondOperand = "";
         calculator.operator = null;
         calculator.operatorSelected = false;
         calculator.resultDisplayed = true;
-        calculator.waitingForSecondOperand = false;
     }
 }
 
@@ -147,7 +149,7 @@ function calculate() {
 function backspace() {
     if (calculator.secondOperand !== "") {
         calculator.secondOperand = calculator.secondOperand.slice(0, -1);
-        updateDisplay(calculator.secondOperand);
+        updateDisplay(calculator.secondOperand === "" ? calculator.firstOperand : calculator.secondOperand);
         console.log(`Second operand after backspace: ${calculator.secondOperand}`);
     } else if (calculator.operatorSelected) {
         calculator.operator = null;
@@ -156,7 +158,7 @@ function backspace() {
         console.log(`First operand after backspace: ${calculator.firstOperand}`);
     } else if (calculator.firstOperand !== null) {
         calculator.firstOperand = calculator.firstOperand.slice(0, -1);
-        updateDisplay(calculator.firstOperand);
+        updateDisplay(calculator.firstOperand || "");
     }
 }
 
@@ -256,7 +258,7 @@ switch (key) {
         break;
     case 'Enter':
     case '=':
-        calculate();
+        equalsButton.click();
         // Prevent default browser behavior (e.g., submitting a form)
         e.preventDefault();
         break;
