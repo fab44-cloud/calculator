@@ -83,32 +83,19 @@ numberButtons.forEach((button) => {
     });
 });
 
-// Create function for the first and second operands
+// --- Operand Input Handler ---
 function handleOperandInput(input) {
     if (calculator.resultDisplayed) {
-        // Clear the display and secondOperand
-        firstOperand = "";
-        secondOperand = "";
-        console.log("Clearing display");
-        updateDisplay("");
-        console.log("Display cleared")
-
-        // Reset the flag
-        resultDisplayed = false;
+        clearDisplay();
     }
     
     if (!calculator.operatorSelected) {
-        calculator.firstOperand += input;
-        if (calculator.firstOperand.length < 13) {
-            updateDisplay(calculator.firstOperand);
-            console.log(`First operand: ${calculator.firstOperand}`);  
-        }
-    } else if (operatorSelected) {
+        calculator.firstOperand = calculator.firstOperand === null ? input : calculator.firstOperand + input;
+        updateDisplay(calculator.firstOperand);
+    } else {
         secondOperand += input;
-        if (secondOperand.length < 13) {
-            updateDisplay(secondOperand);
-            console.log(`Second operand: ${secondOperand}`);
-        }
+        updateDisplay(secondOperand);
+        console.log(`Second operand: ${secondOperand}`);
     }
 }
 
