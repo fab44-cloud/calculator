@@ -219,15 +219,18 @@ decimalButton.addEventListener("click", () => {
 
 // --- Decimal Handler ---
 function handleDecimal() {
-    if (calculator.operatorSelected) {
-        if (!secondOperand.includes('.')) {
-            secondOperand += '.';
-            updateDisplay(secondOperand);
+    if (!calculator.operatorSelected) {
+        if (calculator.firstOperand === null) {
+            calculator.firstOperand = "0.";
+            updateDisplay(calculator.firstOperand);
+        } else if (!calculator.firstOperand.includes('.')) {
+            calculator.firstOperand += '.';
+            updateDisplay(calculator.firstOperand);
         }
     } else {
-        if (!firstOperand.includes('.')) {
-            firstOperand += ".";
-            updateDisplay(firstOperand);
+        if (!calculator.secondOperand.includes('.')) {
+            calculator.secondOperand += ".";
+            updateDisplay(calculator.secondOperand);
         }  
     }
 }
