@@ -72,17 +72,6 @@ function clearDisplay() {
     updateDisplay("");
 }
 
-// Create event listener for number buttons
-const numberButtons = document.querySelectorAll(".numeric-keys");
-// Use .forEach method to iterate over each button.
-numberButtons.forEach((button) => {
-        
-    // For each button we add a click event listener.
-    button.addEventListener("click", () => {
-        handleOperandInput(button.textContent);
-    });
-});
-
 // --- Operand Input Handler ---
 function handleOperandInput(input) {
     if (calculator.resultDisplayed) {
@@ -99,14 +88,6 @@ function handleOperandInput(input) {
         console.log(`Second operand: ${calculator.secondOperand}`);
     }
 }
-
-// Create event listener for operator buttons
-const operatorButtons = document.querySelectorAll(".operator-keys");
-operatorButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        handleOperatorInput(button.textContent);
-    });
-});  
 
 // --- Operator Input Handler --- 
 function handleOperatorInput(input) {
@@ -125,13 +106,6 @@ function handleOperatorInput(input) {
     updateDisplay(input);
     console.log(`Operator: ${calculator.operator}`);
 }
-
-// Define the equalsButton
-const equalsButton = document.querySelector(".equals-button");
-// Event listener for equals button
-equalsButton.addEventListener("click", () => {
-    calculate();
-})
 
 // --- Calculate Function ---
 function calculate() {
@@ -169,14 +143,6 @@ function calculate() {
     }
 }
 
-// Define backspace button
-const backspaceButton = document.querySelector(".backspace-button");
-
-// Event listener for backspace button
-backspaceButton.addEventListener("click", () => {
-    backspace();
-})
-
 // --- Backspace Function ---
 function backspace() {
     if (calculator.secondOperand !== "") {
@@ -194,28 +160,12 @@ function backspace() {
     }
 }
 
-// Define the clear button
-const clearButton = document.querySelector(".clear-key")
-
-// Event listener for clear button
-clearButton.addEventListener("click", () => {
-    clearDisplay();    
-})    
-
 function clearDisplay() {
     operator = "";
     firstOperand = "";
     secondOperand = "";
     updateDisplay("");
 }
-
-// Define decimal button
-const decimalButton = document.querySelector(".decimal-key")
-
-// Event listener for decimal button
-decimalButton.addEventListener("click", () => {
-    handleDecimal();
-})
 
 // --- Decimal Handler ---
 function handleDecimal() {
@@ -234,6 +184,52 @@ function handleDecimal() {
         }  
     }
 }
+
+// --- Event Listeners ---
+const numberButtons = document.querySelectorAll(".numeric-keys");
+// Use .forEach method to iterate over each button.
+numberButtons.forEach((button) => {
+    // For each button we add a click event listener.
+    button.addEventListener("click", () => {
+        handleOperandInput(button.textContent);
+    });
+});
+
+// Create event listener for operator buttons
+const operatorButtons = document.querySelectorAll(".operator-keys");
+operatorButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        handleOperatorInput(button.textContent);
+    });
+});
+
+// Define the equalsButton
+const equalsButton = document.querySelector(".equals-button");
+// Event listener for equals button
+equalsButton.addEventListener("click", () => {
+    calculate();
+});
+
+// Define backspace button
+const backspaceButton = document.querySelector(".backspace-button");
+// Event listener for backspace button
+backspaceButton.addEventListener("click", () => {
+    backspace();
+});
+
+// Define the clear button
+const clearButton = document.querySelector(".clear-key")
+// Event listener for clear button
+clearButton.addEventListener("click", () => {
+    clearDisplay();    
+});
+
+// Define decimal button
+const decimalButton = document.querySelector(".decimal-key")
+// Event listener for decimal button
+decimalButton.addEventListener("click", () => {
+    handleDecimal();
+});
 
 // Add keyboard support with an event listener
 document.addEventListener('keydown', function(e) {
