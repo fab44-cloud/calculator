@@ -147,6 +147,9 @@ function calculate() {
 
 // --- Backspace Function ---
 function backspace() {
+    if (calculator.resultDisplayed){
+        return;
+    }
     if (calculator.secondOperand !== "") {
         calculator.secondOperand = calculator.secondOperand.slice(0, -1);
         updateDisplay(calculator.secondOperand === "" ? calculator.firstOperand : calculator.secondOperand);
