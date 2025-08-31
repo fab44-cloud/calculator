@@ -6,6 +6,7 @@ const calculator = {
     resultDisplayed: false,
     waitingForSecondOperand: false,
     displayValue: "",
+    errorState: false,
 };
 
 // --- DOM Elements ---
@@ -74,13 +75,21 @@ function clearDisplay() {
 
 // --- Operand Input Handler ---
 function handleOperandInput(input) {
-    if (calculator.resultDisplayed) {
+    if (calculator.errorState) {
+        clearDisplay();
+        calculator.errorState = false;
+        calculator.firstOperand = input;
+        console.log(`First operand: ${calculator.firstOperand}`);
+        updateDisplay(calculator.firstOperand);
+    }
+    else if (calculator.resultDisplayed) {
         clearDisplay();
         calculator.firstOperand = input;
         updateDisplay(calculator.firstOperand);
     }
     // Handle operand input after an operator.
     else if (calculator.operatorSelected) {
+        console.log(calculator.operatorSelected);
         calculator.secondOperand += input;
         updateDisplay(calculator.secondOperand);
         console.log(`Second operand: ${calculator.secondOperand}`);
@@ -103,6 +112,10 @@ function handleOperatorInput(input) {
         calculate(); // Calculate result of the previous operation
         // The result of 'calculate()' becomes the new firstOperand
     }
+
+    if (calculator.firstOperand === null && calculator.resultDisplayed) {
+        return;
+    }
     
     calculator.operator = input;
     calculator.operatorSelected = true;
@@ -123,26 +136,28 @@ function calculate() {
     const num2 = parseFloat(calculator.secondOperand);
     // Perform the calculation and save it to a variable
     let solution = operate(calculator.operator, num1, num2);
-    
+
+    // Check for division by zero before performing the operation
     if (solution === "Undefined") {
         updateDisplay(solution);
-        clearDisplay();
-    } else {
-        console.log(`Solution: ${solution}`);
-
-        // Handle floating point results
-        if (solution % 1 !== 0) {
-            solution = solution.toFixed(4);
-        }
-        
-        updateDisplay(solution);
-        // Reset state for next operation
-        calculator.firstOperand = solution.toString();
-        calculator.secondOperand = "";
-        calculator.operator = null;
-        calculator.operatorSelected = false;
-        calculator.resultDisplayed = true;
+        console.log(solution);
+        calculator.errorState = true;
+        return;
     }
+    
+    // Handle floating point results
+    if (solution % 1 !== 0) {
+        solution = solution.toFixed(4);
+    }
+    
+    updateDisplay(solution);
+    // Reset state for next operation
+    calculator.firstOperand = solution.toString();
+    calculator.secondOperand = "";
+    calculator.operator = null;
+    calculator.operatorSelected = false;
+    calculator.resultDisplayed = true;
+    
 }
 
 // --- Backspace Function ---
